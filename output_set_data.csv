@@ -1,0 +1,5 @@
+nombre,funcion,minimo,maximo,tr_1,tr_2,tr_3,trap_1,trap_2,trap_3,trap_4
+progreso_nul,triangular,0,100,0,0,20,,,,
+progreso_cas,triangular,0,100,10,30,50,,,,
+progreso_med,triangular,0,100,40,60,80,,,,
+progreso_alt,trapezoidal,0,100,,,,70,90,100,100

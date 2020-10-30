@@ -1,0 +1,7 @@
+nombre,funcion,minimo,maximo,tr_1,tr_2,tr_3,trap_1,trap_2,trap_3,trap_4
+puntuacion_low,triangular,0,100,0,0,20,,,,
+puntuacion_med,triangular,0,100,10,30,50,,,,
+puntuacion_hi,triangular,0,100,40,60,80,,,,
+acierto_lo,triangular,0,100,0,0,20,,,,
+acierto_med,triangular,0,100,10,30,50,,,,
+acierto_hi,triangular,0,100,40,60,80,,,,
