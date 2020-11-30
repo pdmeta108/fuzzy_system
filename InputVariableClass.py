@@ -9,7 +9,6 @@ class InputFuzzyVariable(FuzzyVariable):
         fuzzy_x = []
         for y in var_set:
            fuzzy_x.append(fuzz.interp_membership(x_set[0], y, valor))
-        return var_set
-
+        return fuzzy_x
 
 

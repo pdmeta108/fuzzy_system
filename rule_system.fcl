@@ -1,0 +1,48 @@
+FUNCTION_BLOCK rule_system
+
+    VAR_INPUT				// Define input variables
+        puntuacion : REAL;
+        acierto : REAL;
+    END_VAR
+
+    VAR_OUTPUT				// Define output variable
+        progreso : REAL;
+    END_VAR
+
+    FUZZIFY puntuacion
+        RANGE := (0.0 .. 100.0)
+        TERM nulo := Triangle 0.0 0.0 15.0
+        TERM casi := Triangle 10.0 25.0 40.0
+        TERM medio := Triangle 35.0 50.0 75.0
+        TERM alto := Triangle 65.0 100.0 100.0
+    END_FUZZIFY
+
+    FUZZIFY acierto
+        RANGE := (0.0 .. 100.0)
+        TERM nulo := Triangle 0.0 0.0 15.0
+        TERM casi := Triangle 10.0 25.0 40.0
+        TERM medio := Triangle 35.0 60.0 85.0
+        TERM alto := Triangle 80.0 100.0 100.0
+    END_FUZZIFY
+
+    DEFUZZIFY progreso
+        RANGE := (0.0 .. 100.0)
+        TERM nulo := Triangle 0.0 0.0 15
+        TERM casi := Triangle 10.0 25.0 40.0
+        TERM medio := TRAPE 35.0 60.0 70.0 85.0
+        TERM alto := TRAPE 75.0 90.0 100.0 100.0
+        METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+        DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+    END_DEFUZZIFY
+
+    RULEBLOCK No1
+        AND : MIN;			// Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+        ACT : MIN;			// Use 'min' activation method
+        ACCU : MAX;			// Use 'max' accumulation method
+
+        RULE 1 : IF puntuacion IS nulo OR puntuacion IS nulo THEN progreso IS nulo;
+        RULE 2 : IF puntuacion IS medio THEN progreso IS medio;
+        RULE 3 : IF puntuacion IS alto AND acierto IS alto THEN progreso IS alto;
+    END_RULEBLOCK
+
+END_FUNCTION_BLOCK

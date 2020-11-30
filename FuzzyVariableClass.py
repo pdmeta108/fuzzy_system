@@ -29,12 +29,5 @@ class FuzzyVariable(FuzzySet):
             var_trap = fuzz.trapmf(x_trap, [a, b, c, d])
             return x_trap, var_trap
 
-    @staticmethod
-    def union(set_l, set_r):
-        return np.fmin(set_l, set_r)
-
-    @staticmethod
-    def interseccion(set_l, set_r):
-        return np.fmax(set_l, set_r)
 
 
